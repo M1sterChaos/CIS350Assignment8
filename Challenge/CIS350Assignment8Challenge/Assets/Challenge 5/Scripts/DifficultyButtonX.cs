@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * (Austin Buck)
+ * (Assignment 8)
+ * (Controls the difficulty with the buttons)
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +20,7 @@ public class DifficultyButtonX : MonoBehaviour
         gameManagerX = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
         button = GetComponent<Button>();
         button.onClick.AddListener(SetDifficulty);
+        gameManagerX.timerText.text = "Timer: ";
     }
 
     /* When a button is clicked, call the StartGame() method
@@ -23,7 +29,18 @@ public class DifficultyButtonX : MonoBehaviour
     void SetDifficulty()
     {
         Debug.Log(button.gameObject.name + " was clicked");
-        gameManagerX.StartGame();
+        if(button.gameObject.name == "Hard Button")
+        {
+            gameManagerX.StartGame(1);
+        }
+        if (button.gameObject.name == "Medium Button")
+        {
+            gameManagerX.StartGame(2);
+        }
+        if (button.gameObject.name == "Easy Button")
+        {
+            gameManagerX.StartGame(3);
+        }
     }
 
 

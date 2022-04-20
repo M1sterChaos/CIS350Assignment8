@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * (Austin Buck)
+ * (Assignment 8)
+ * (Controls the score going up and the targets in general)
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,13 +32,13 @@ public class TargetX : MonoBehaviour
     }
 
     // When target is clicked, destroy it, update score, and generate explosion
-    private void OnMouseEnter()
+    private void OnMouseDown()
     {
         if (gameManagerX.isGameActive)
         {
-            Destroy(gameObject);
             gameManagerX.UpdateScore(pointValue);
             Explode();
+            Destroy(gameObject);
         }
                
     }
@@ -59,13 +64,12 @@ public class TargetX : MonoBehaviour
     // If target that is NOT the bad object collides with sensor, trigger game over
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
 
         if (other.gameObject.CompareTag("Sensor") && !gameObject.CompareTag("Bad"))
         {
             gameManagerX.GameOver();
-        } 
-
+        }
+        Destroy(gameObject);
     }
 
     // Display explosion particle at object's position
